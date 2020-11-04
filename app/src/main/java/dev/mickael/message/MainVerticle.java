@@ -19,7 +19,7 @@ public class MainVerticle extends AbstractVerticle {
     log.info("Starting MainVerticle");
     HttpServer server = vertx.createHttpServer();
 
-    RouterBuilder.create(vertx, "app/src/main/resources/openapi.yml")
+    RouterBuilder.create(vertx, getClass().getClassLoader().getResource("openapi.yml").getFile())
         .onComplete(
             ar -> {
               if (ar.succeeded()) {
