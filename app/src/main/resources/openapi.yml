@@ -1,0 +1,72 @@
+openapi: "3.0.3"
+
+info:
+  title: Subscription Data Service
+  version: "1.0.0"
+
+servers:
+  - url: http://localhost:8080
+    description: "Development Server"
+
+paths:
+  "/accounts/{accountId}":
+    get:
+      description: Returns the billing information for the given account
+      operationId: showAccount
+      parameters:
+        - name: accountId
+          in: path
+          description: Account ID to fetch
+          required: true
+          schema:
+            type: string
+      tags:
+        - Account
+      responses:
+        "200":
+          description: Billing information for an account
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/account"
+
+  "/accounts":
+    post:
+      description: Create an account with its billing information
+      operationId: createAccount
+      tags:
+        - Account
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/account"
+      responses:
+        "201":
+          description: Account successfully created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/account"
+
+components:
+  schemas:
+    account:
+      type: object
+      required:
+        - zendesk_account_id
+      properties:
+        billing_id:
+          type: string
+        crm_account_id:
+          type: string
+        zendesk_account_id:
+          type: string
+        sales_model:
+          type: string
+        vat_id:
+          type: string
+        fraud_status:
+          type: string
+        dunning_state:
+          type: string

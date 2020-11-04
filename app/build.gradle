@@ -17,7 +17,15 @@ repositories {
     jcenter()
 }
 
+def vertxVersion = '4.0.0.CR1'
+
 dependencies {
+    implementation "io.vertx:vertx-web:${vertxVersion}"
+    implementation "io.vertx:vertx-mysql-client:${vertxVersion}"
+    implementation "io.vertx:vertx-web-openapi:${vertxVersion}"
+    implementation 'ch.qos.logback:logback-classic:1.2.3'
+    implementation 'de.huxhorn.sulky:de.huxhorn.sulky.ulid:8.2.0'
+
     // Use JUnit Jupiter API for testing.
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.2'
 
@@ -27,7 +35,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'dev.mickael.message.App'
+    mainClass.set('dev.mickael.message.App')
 }
 
 tasks.named('test') {
