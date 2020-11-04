@@ -19,7 +19,8 @@ paths:
           description: Account ID to fetch
           required: true
           schema:
-            type: string
+            type: integer
+            minimum: 1
       tags:
         - Account
       responses:
